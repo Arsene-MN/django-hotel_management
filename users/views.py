@@ -6,6 +6,8 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse 
+from django.contrib.auth import logout
+
 
 
 
@@ -47,3 +49,8 @@ def login_view(request):
         form = AuthenticationForm()
     
     return render(request, 'users/login.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('users:login')  
