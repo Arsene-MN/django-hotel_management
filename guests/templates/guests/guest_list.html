@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guest List</title>
+</head>
+<body>
+    <h1>Guest List</h1>
+    <a href="{% url 'guest_create' %}">Add New Guest</a>
+    <ul>
+        {% for guest in guests %}
+            <li>
+                <a href="{% url 'guest_detail' guest.pk %}">{{ guest.first_name }} {{ guest.last_name }}</a>
+                <a href="{% url 'guest_update' guest.pk %}">Edit</a>
+                <a href="{% url 'guest_delete' guest.pk %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

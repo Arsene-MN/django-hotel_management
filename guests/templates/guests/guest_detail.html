@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guest Detail</title>
+</head>
+<body>
+    <h1>Guest Detail</h1>
+    <p>Name: {{ guest.first_name }} {{ guest.last_name }}</p>
+    <p>Email: {{ guest.email }}</p>
+    <p>Phone: {{ guest.phone_number }}</p>
+    <a href="{% url 'guest_update' guest.pk %}">Edit</a>
+    <a href="{% url 'guest_list' %}">Back to List</a>
+</body>
+</html>
+    

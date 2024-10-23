@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Available Rooms</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Room Number</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in available_rooms %}
+                <tr>
+                    <td>{{ room.number }}</td>
+                    <td>{{ room.room_type }}</td>
+                    <td>{{ room.price }}</td>
+                    <td>{{ room.is_available|yesno:"Available,Not Available" }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No rooms available at the moment.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Booking List</h2>
+
+<a href="{% url 'create_booking' %}">Create a New Booking</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Guest</th>
+            <th>Rooms</th>
+            <th>Check-in Date</th>
+            <th>Check-out Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{ booking.id }}</td>
+            <td>{{ booking.guest }}</td>
+            <td>
+                <ul>
+                    {% for room in booking.rooms.all %}
+                    <li>{{ room }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>{{ booking.check_in_date }}</td>
+            <td>{{ booking.check_out_date }}</td>
+            <td>
+                <a href="{% url 'booking_detail' booking.pk %}" class="btn btn-info btn-sm">View</a>
+                <a href="{% url 'booking_delete' booking.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
