@@ -13,7 +13,7 @@ def room_list(request):
     return render(request, 'rooms/room_list.html', {'rooms': rooms})
 
 def room_detail(request, pk):
-    room = get_object_or_404(Room, pk=pk)
+    room = get_object_or_404(Room, pk=pk)  
     return render(request, 'rooms/room_detail.html', {'room': room})
 
 def room_create(request):
@@ -42,5 +42,5 @@ def room_delete(request, pk):
     room = get_object_or_404(Room, pk=pk)
     if request.method == "POST":
         room.delete()
-        return redirect('room_list')
+        return redirect('rooms:room_list')
     return render(request, 'rooms/room_confirm_delete.html', {'room': room})

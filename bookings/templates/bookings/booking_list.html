@@ -3,7 +3,6 @@
 {% block content %}
 <h2>Booking List</h2>
 
-<a href="{% url 'create_booking' %}">Create a New Booking</a>
 
 <table class="table table-striped">
     <thead>
@@ -38,4 +37,9 @@
         {% endfor %}
     </tbody>
 </table>
+
+<a href="{% url 'create_booking' %}">Create a New Booking</a>
+
 {% endblock %}
+
+

@@ -18,10 +18,8 @@
   {% else %}
       <a href="{% url 'login' %}">Login</a>
   {% endif %}
-  <a href="{% url 'signup' %}">Sign Up</a>
-                <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'booking_list' %}">Bookings</a></li>
-                <li><a href="{% url 'room_list' %}">Rooms</a></li>
+                <li><a href="{% url 'rooms:room_list' %}">Rooms</a></li>
             </ul>
         </nav>
     </header>

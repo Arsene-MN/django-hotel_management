@@ -9,7 +9,7 @@
     <p>Room Type: {{ room.get_room_type_display }}</p>
     <p>Price per Night: ${{ room.price_per_night }}</p>
     <p>Available: {{ room.available }}</p>
-    <a href="{% url 'room_update' room.pk %}">Edit</a>
-    <a href="{% url 'room_list' %}">Back to List</a>
+    <a href="{% url 'room:room_update' room.pk %}">Edit</a>
+    <a href="{% url 'room:room_list' %}">Back to List</a>
 </body>
 </html>
