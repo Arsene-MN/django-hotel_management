@@ -9,7 +9,7 @@ class Room(models.Model):
     room_number = models.CharField(max_length=10, unique=True)
     room_type = models.CharField(max_length=1, choices=ROOM_TYPES)
     price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
-    available = models.BooleanField(default=True)
+    available = models.BooleanField(default=True)  # Ensure this field exists
 
     def __str__(self):
         return f"Room {self.room_number} ({self.get_room_type_display()})"

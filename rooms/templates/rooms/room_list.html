@@ -1,20 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Room List</title>
-</head>
-<body>
-    <h1>Room List</h1>
-    <ul>
-        {% for room in rooms %}
-            <li>
-                <a href="{% url 'rooms:room_detail' room.pk %}">{{ room.room_number }}</a>
-                <a href="{% url 'rooms:room_update' room.pk %}">Edit</a>
-                <a href="{% url 'rooms:room_delete' room.pk %}">Delete</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'rooms:room_create' %}">Add New Room</a>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Rooms{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-3">Available Rooms</h2>
+
+<table class="table table-striped" style="width: 80%; margin: 0 auto;">
+    <thead>
+        <tr>
+            <th>Room Number</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.room_number }}</td>
+                <td>{{ room.room_type }}</td>
+                <td>{{ room.available|yesno:"Available,Taken" }}</td>
+                <td>
+                    <a href="{% url 'rooms:room_detail' room.id %}" class="btn btn-info btn-sm">Details</a>
+                    <form action="{% url 'rooms:room_delete' room.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="text-center" style="margin-top: 20px;">
+    <a href="{% url 'rooms:room_create' %}" class="btn btn-success">Add Room</a>
+</div>
+
+
+{% endblock %}

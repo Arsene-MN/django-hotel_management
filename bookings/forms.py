@@ -4,7 +4,7 @@ from .models import Booking, Room
 
 class BookingForm(forms.ModelForm):
     rooms = forms.ModelMultipleChoiceField(
-        queryset=Room.objects.all(),
+        queryset=Room.objects.none(),  # Initialize with no rooms
         widget=forms.CheckboxSelectMultiple,  # Render as checkboxes
         required=True  # Set to True to make it a required field
     )
@@ -24,3 +24,8 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ['guest', 'rooms', 'check_in_date', 'check_out_date']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Filter rooms to only include available ones
+        self.fields['rooms'].queryset = Room.objects.filter(available=True)

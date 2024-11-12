@@ -1,19 +1,17 @@
-<!-- users/templates/users/signup.html -->
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-</head>
-<body>
-    <h1>Sign Up</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
-</body>
-</html>
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Signup</h2>
+<form method="POST" class="mx-auto w-50">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Signup</button>
+    </div>
+</form>
+<p class="text-center mt-3">
+    Already have an account? <a href="{% url 'login' %}">Login here</a>
+</p>
+{% endblock %}

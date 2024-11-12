@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Create Booking</h2>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}  <!-- This should render the date fields as well -->
-    <button type="submit">Create Booking</button>
-  </form>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2 class="text-center">Create Booking</h2>
+        <form method="POST" class="bg-light p-4 rounded shadow">
+          {% csrf_token %}
+          {{ form.as_p }}  <!-- This should render the date fields as well -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-success">Create Booking</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock %}

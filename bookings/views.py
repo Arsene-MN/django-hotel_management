@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Booking
-from .forms import BookingForm  # Create this form
+from .forms import BookingForm
 from guests.models import Guest
 from rooms.models import Room
 
@@ -8,7 +8,7 @@ def create_booking(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
-            booking = form.save()
+            form.save()
             return redirect('booking_list')  # Redirect to the booking list after saving
     else:
         form = BookingForm()

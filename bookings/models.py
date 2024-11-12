@@ -1,13 +1,19 @@
 # bookings/models.py
 from django.db import models
-from guests.models import Guest  # Ensure you have a Guest model
-from rooms.models import Room  # Ensure you have a Room model
+from rooms.models import Room
+from guests.models import Guest
 
 class Booking(models.Model):
     guest = models.ForeignKey(Guest, on_delete=models.CASCADE)
-    rooms = models.ManyToManyField(Room)  # Change to ManyToManyField
+    rooms = models.ManyToManyField(Room)
     check_in_date = models.DateField()
     check_out_date = models.DateField()
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        for room in self.rooms.all():
+            room.available = False
+            room.save()
+
     def __str__(self):
-        return f"Booking for {self.guest.name} from {self.check_in_date} to {self.check_out_date}"
+        return f"Booking for {self.guest.first_name} {self.guest.last_name} from {self.check_in_date} to {self.check_out_date}"
