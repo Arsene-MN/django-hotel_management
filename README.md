@@ -1,2 +1,7 @@
-YouTube  Video Link:
-https://youtu.be/AnyOmDWZZ9A
+This is a Django Hostel Management Application
+
+#Features
+- Authentication
+- Authorization
+- Add Room
+- Add Booking
